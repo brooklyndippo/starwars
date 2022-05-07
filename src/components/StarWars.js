@@ -72,7 +72,6 @@ function StarWars() {
 
     return (
         <div>
-            <h2>Star Wars Component </h2>
             <form name="num-input" onSubmit={e =>{
                 e.preventDefault()
                 console.log('submit form')
@@ -90,7 +89,7 @@ function StarWars() {
             <h2>Saved Characters</h2>
             <div className="row character-list">
                 {saved.map((character) =>
-                <CharacterList character={character}/>
+                <CharacterList character={character} saved={saved} setSaved={setSaved}/>
             )}
             </div>
         </div>
