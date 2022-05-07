@@ -7,6 +7,7 @@ function StarWars() {
 
     const [input, setInput] = useState('');
     const [data, setData] = useState('');
+    const [homeworld, setHomeworld] = useState('');
     const [saved, setSaved] = useState([]);
 
     function validateInput() {
@@ -16,6 +17,26 @@ function StarWars() {
           return false;
         }
       };
+
+    async function fetchHomeworld(homeworld) {
+
+        console.log('getting homeworld...')
+
+        const path = `${homeworld}`
+        
+        const response = await fetch(path)
+        const json = await response.json()
+
+        console.log(json)
+
+        if (response.status !== 200) {
+            setHomeworld('Unknown')
+            return
+        }
+
+        return(json.name)
+    };
+
 
     async function fetchCharacter() {
 
@@ -32,6 +53,8 @@ function StarWars() {
             return
         }
 
+        const homeworld = await fetchHomeworld(json.homeworld)
+
         setData({
             status: response.status,
             key: input,
@@ -40,7 +63,7 @@ function StarWars() {
             mass: json.mass,
             hair_color: json.hair_color,
             eye_color: json.eye_color,
-            homeworld: json.homeworld
+            homeworld: homeworld
         })
 
     };
