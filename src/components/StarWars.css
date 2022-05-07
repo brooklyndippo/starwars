@@ -1,0 +1,63 @@
+
+
+.btn, .btn:visited, .btn:active, .btn:focus {
+    background-color: #ffe81f;
+    color: black;
+    border: none;
+    transition: all .2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #ffe81f;
+    transform: scale(1.1); 
+    color: black;
+}
+
+.card {
+    color: black;
+}
+
+.display-row {
+    height: 50vh;
+    padding: 10vh 0;
+    width: 50vw;
+    margin: 5% auto;
+    background-color: rgb(17, 17, 17);
+}
+
+.display-error {
+    padding: 15vh 0;
+}
+
+.display-characters-row {
+    align-content: center;
+    justify-content: center;
+}
+
+.display-characters > p {
+    text-align: left;
+}
+
+form {
+    height: 10vh;
+    margin-top: 5%;
+}
+
+form > #index, form > #button {
+    width: 20%;
+    padding: 1%;
+    font-size: 1.3em;
+    border-radius: 10px;
+}
+
+form > #index {
+    border-radius: 10px 0 0 10px;
+}
+
+form > #button {
+    width: 12%;
+    text-align: center;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    border-radius: 0 10px 10px 0;
+}

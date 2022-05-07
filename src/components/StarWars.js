@@ -2,6 +2,7 @@ import React from "react";
 import {useState} from "react";
 import DisplayCharacter from "./DisplayCharacter";
 import CharacterList from "./CharacterList";
+import './StarWars.css'
 
 function StarWars() {
 
@@ -77,19 +78,16 @@ function StarWars() {
                 console.log('submit form')
                 fetchCharacter().then()
                 }}>
-                {/* TO-DO: Validate input */}
                 <input 
+                id="index"
                 name="number"
                 value={input}
                 onChange={e=> setInput(e.target.value)}
                 />
-                <input type="submit"/>
+                <input id="button" type="submit"/>
             </form>
             <DisplayCharacter data={data} saved={saved} setSaved={setSaved}/>
             <h2>Saved Characters</h2>
-            <ul>
-                {saved.map((character) => <li key={character.key}>{character.name}</li>)}
-            </ul>
             <div className="row character-list">
                 {saved.map((character) =>
                 <CharacterList character={character}/>
