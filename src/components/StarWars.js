@@ -1,11 +1,13 @@
 import React from "react";
 import {useState} from "react";
 import DisplayCharacter from "./DisplayCharacter";
+import CharacterList from "./CharacterList";
 
 function StarWars() {
 
-    const [input, setInput] = useState(1);
+    const [input, setInput] = useState('');
     const [data, setData] = useState('');
+    const [saved, setSaved] = useState([]);
 
     function validateInput() {
         let num = document.forms["num-input"]["number"].value;
@@ -32,6 +34,7 @@ function StarWars() {
 
         setData({
             status: response.status,
+            key: input,
             name: json.name,
             height: json.height,
             mass: json.mass,
@@ -59,7 +62,16 @@ function StarWars() {
                 />
                 <input type="submit"/>
             </form>
-            <DisplayCharacter data={data}/>
+            <DisplayCharacter data={data} saved={saved} setSaved={setSaved}/>
+            <h2>Saved Characters</h2>
+            <ul>
+                {saved.map((character) => <li key={character.key}>{character.name}</li>)}
+            </ul>
+            <div className="row character-list">
+                {saved.map((character) =>
+                <CharacterList character={character}/>
+            )}
+            </div>
         </div>
     )
 }
