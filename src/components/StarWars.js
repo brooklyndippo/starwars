@@ -8,7 +8,6 @@ function StarWars() {
 
     const [input, setInput] = useState('');
     const [data, setData] = useState('');
-    const [homeworld, setHomeworld] = useState('');
     const [saved, setSaved] = useState([]);
 
     function validateInput() {
@@ -28,15 +27,31 @@ function StarWars() {
         const response = await fetch(path)
         const json = await response.json()
 
-        console.log(json)
-
         if (response.status !== 200) {
-            setHomeworld('Unknown')
-            return
+            return 'Unknown'
         }
 
         return(json.name)
     };
+
+    async function fetchFilm(film) {
+
+        console.log('getting film...')
+
+        const path = `${film}`
+        
+        const response = await fetch(path)
+
+        return response
+        const json = await response.json()
+
+        if (response.status !== 200) {
+            return 'Unknown'
+        }
+
+        return(json.title)
+    };
+
 
 
     async function fetchCharacter() {
@@ -56,6 +71,13 @@ function StarWars() {
 
         const homeworld = await fetchHomeworld(json.homeworld)
 
+        const filmsRes = await Promise.all(json.films.map(film => fetch(film)))
+        const filmsJSON = await Promise.all(filmsRes.map(res => res.json()))
+        const films = filmsJSON.map(film => film.title)
+
+        console.log(films)
+
+
         setData({
             status: response.status,
             key: input,
@@ -64,7 +86,8 @@ function StarWars() {
             mass: json.mass,
             hair_color: json.hair_color,
             eye_color: json.eye_color,
-            homeworld: homeworld
+            homeworld: homeworld,
+            films: films
         })
 
     };

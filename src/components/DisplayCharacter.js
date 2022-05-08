@@ -1,4 +1,5 @@
 import React from "react";
+import DisplayMovies from "./DisplayMovies";
 
 function DisplayCharacter(props) {
     const {data, saved, setSaved} = props
@@ -46,6 +47,7 @@ function DisplayCharacter(props) {
                     <p>Hair Color: <strong>{data.hair_color}</strong></p>
                     <p>Eye Color: <strong>{data.eye_color}</strong></p>
                     <p>Home Planet: <strong>{data.homeworld}</strong></p>
+                    <DisplayMovies data={data}/>
                 </div>
                 <div className="col-3">
                     <button className="btn btn-primary" onClick={saveCharacter}>Save Character</button>
